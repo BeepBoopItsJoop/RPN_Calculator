@@ -1,0 +1,29 @@
+# Build artifacts
+**/bin/
+**/obj/
+
+# Visual Studio specific files
+*.suo
+*.user
+*.vbproj
+*.csproj
+*.sln
+
+# Test project results
+**/TestResults/
+
+# NuGet packages
+**/packages/
+
+# Secret files
+*.secrets
+
+# Editor temporary/cache files
+*~
+*.tmp
+
+# Build outputs (consider including these if not managed by build process)
+*.pdb
+*.xml
+*.dll
+*.exe
