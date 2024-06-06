@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace RpnCalculator;
 
 public class Calculator {
@@ -50,10 +52,18 @@ public class Calculator {
                     // Perform operation
                          //  [0] is right operand,
                          //  [1] is left operand,
-                         //  operator is this token 
-                    // token.GetValue()
+                         //  token is operator.
+                    double result;
+                    if(Operations.TryGetValue(token.GetValue(), out Operation operation)) {
+                         result = operation(arr[1].GetNumericalValue(), arr[0].GetNumericalValue());
+                    } else {
+                         throw new InvalidEnumArgumentException($"Invalid operator {token.GetValue()} supplied as token");
+                    }
+                    // push result of operation to stack
+                    stack.Push(new Token(TokenType.Operand, result.ToString()));
                }
           });
-          return new double();
+          // stack only has answer left
+          return stack.Pop().GetNumericalValue();
      }
 }
