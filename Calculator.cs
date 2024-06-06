@@ -1,21 +1,46 @@
 namespace RpnCalculator;
 
-public class Calculator() {
-     private List<string> AcceptedOperators { get; } = ["+", "-", "*", "/"];
+public class Calculator {
+     private delegate double Operation(double a, double b);
+
+     private double Add(double a, double b) {
+          return a + b;
+     }
+     private double Subtract(double a, double b) {
+          return a - b;
+     }
+     private double Multiply(double a, double b) {
+          return a * b;
+     }
+     private double Divide(double a, double b) {
+          return a / b;
+     }
+     private double SquareRoot(double a, double b) { // Dont use b, need it to fit the delegate
+          return Math.Sqrt(a);
+     }
+     private double Explonent(double a, double b) {
+          return Math.Pow(a, b);
+     }
+
+     private Dictionary<string, Operation> Operations { get; } = new();
+     public List<string> AcceptedOperators { get; } = new();
+     public Calculator() {
+          Operations.Add("+", Add);
+          Operations.Add("-", Subtract);
+          Operations.Add("*", Multiply);
+          Operations.Add("/", Divide);
+          // Operations.Add("sqrt", SquareRoot);
+          Operations.Add("^", Explonent);
+
+          foreach(string key in Operations.Keys) {
+               AcceptedOperators.Add(key);
+          } 
+               
+     }
 
      private Stack<Token> stack = new();
 
-     /// Receives tokens in order (e.g. 4 6 + 3 *)
-     /// Pushes them onto the stack starting from front (e.g. * 3 + 6 4)
-     // private void FillStack(List<Token> tokens) {
-     //      if(tokens.Count == 0) 
-     //           throw new ArgumentException("No tokens provided", tokens.ToString());
-     //      tokens.Reverse(); // Mutates list
-     //      tokens.ForEach(token => stack.Push(token));
-     // }
-
      public double Calculate(List<Token> tokens) {
-          // put tokens into stack and calculate
           tokens.ForEach(token => {
                if(token.IsOperand()) 
                     stack.Push(token);
@@ -28,7 +53,7 @@ public class Calculator() {
                          //  operator is this token 
                     // token.GetValue()
                }
-
           });
+          return new double();
      }
 }
