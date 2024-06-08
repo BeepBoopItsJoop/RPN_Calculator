@@ -2,17 +2,10 @@
 
 using RpnCalculator;
 
+List<string> AcceptedOperators = new List<string> {"+", "-", "/", "*", "^"};
 Calculator calculator = new();
-var ExampleTokens = new List<Token> {
-     new Token(TokenType.Operand, "4"),
-     new Token(TokenType.Operand, "2"),
-     new Token(TokenType.Operand, "3"),
-     new Token(TokenType.Operand, "5"),
-     new Token(TokenType.Operand, "1"),
-     new Token(TokenType.Operator, "-"),
-     new Token(TokenType.Operator, "+"),
-     new Token(TokenType.Operator, "*"),
-     new Token(TokenType.Operator, "+"),
-};
-var bleep = calculator.Calculate(ExampleTokens);
-;
+Parser parser= new(AcceptedOperators);
+
+var bleep = parser.Tokenize("6 2 + 5 * 8 4 / - 36 - 2 ^");
+var bloop = calculator.Calculate(bleep);
+Console.WriteLine(bloop);
