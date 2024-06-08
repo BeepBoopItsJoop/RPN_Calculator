@@ -1,7 +1,5 @@
 using RpnCalculator;
 
-namespace RPN_Calculator;
-
 // Menu
 public class TextMenu : IMenu {
      public List<string> OperationsHelp { get; } = new() {
@@ -35,10 +33,8 @@ public class TextMenu : IMenu {
      /// Prints the help for all the operations obtained from the calculator
      /// </summary>
      public void ShowOperations() {
-          
-     }
-
-     public TextMenu() {
-
+          OperationsHelp.ForEach(line => {
+               Console.WriteLine(line);
+          });    
      }
 }
