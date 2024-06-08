@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace RpnCalculator;
 
-public class Calculator {
+public class Calculator : ICalculator {
      private delegate double Operation(double a, double b);
 
      private double Add(double a, double b) {
@@ -54,7 +54,7 @@ public class Calculator {
                          //  [1] is left operand,
                          //  token is operator.
                     double result;
-                    if(Operations.TryGetValue(token.GetValue(), out Operation operation)) {
+                    if(Operations.TryGetValue(token.GetValue(), out Operation? operation)) {
                          result = operation(arr[1].GetNumericalValue(), arr[0].GetNumericalValue());
                     } else {
                          throw new InvalidEnumArgumentException($"Invalid operator {token.GetValue()} supplied as token");

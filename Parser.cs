@@ -4,22 +4,22 @@ namespace RpnCalculator;
 
 // Validator
 // Parser
-public class Parser {
+public class Parser : IParser {
      List<string> AcceptedOperators = new();
 
      /// <summary>
      /// Breaks the input string into tokens
      /// </summary>
-     public List<Token> Tokenize(string input) {
+     public List<string> Tokenize(string input) {
 
           List<string> tokens = input.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                                    .ToList();
-          return Lex(tokens);
+          return tokens;
      }
      /// <summary>
      /// Converts tokens into their appropriate types and validates them
      /// </summary>
-     private List<Token> Lex(List<string> input) {
+     public List<Token> Lex(List<string> input) {
           List<Token> tokens = new();
 
           input.ForEach(token => {
