@@ -11,7 +11,7 @@ public interface ICalculator {
 }
 
 public interface IMenu {
-     List<string> OperationsHelp { get; set; }
+     List<string> OperationsHelp { get; }
      void ShowMenu();
      void ShowHelp();
      void ShowOperations();
