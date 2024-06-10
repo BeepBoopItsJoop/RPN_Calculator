@@ -1,11 +1,9 @@
-using System.ComponentModel;
-
 namespace RpnCalculator;
 
 // Validator
 // Parser
 public class Parser : IParser {
-     List<string> AcceptedOperators = new();
+     private IList<string> AcceptedOperators;
 
      /// <summary>
      /// Breaks the input string into tokens
@@ -35,7 +33,7 @@ public class Parser : IParser {
           return tokens;
      }
 
-     public Parser(List<string> AcceptedOperators) {
+     public Parser(IList<string> AcceptedOperators) {
           this.AcceptedOperators = AcceptedOperators;
      }
 }

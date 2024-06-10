@@ -2,14 +2,11 @@ using RpnCalculator;
 
 // Menu
 public class TextMenu : IMenu {
-     public List<string> OperationsHelp { get; } = new() {
-          "\'+\' - addition",
-          "\'-\' - subtraction",
-          "\'*\' - multiplication",
-          "\'/\' - division",
-          // "\'sqrt\'",
-          "\'^\' - exponentiation", 
-     };
+     public List<string> OperationsHelp { get; }
+
+     public TextMenu(List<string> OperationsHelp) {
+          this.OperationsHelp = OperationsHelp;
+     }
 
      /// <summary>
      /// Prints the main menu to the user
