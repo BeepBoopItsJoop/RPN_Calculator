@@ -1,6 +1,13 @@
 using RpnCalculator;
 
-// Menu
+public interface IMenu
+{
+     List<string> OperationsHelp { get; }
+     void ShowMenu();
+     void ShowHelp();
+     void ShowOperations();
+}
+
 public class TextMenu : IMenu {
      public List<string> OperationsHelp { get; }
 

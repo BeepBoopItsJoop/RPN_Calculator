@@ -1,7 +1,11 @@
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-
 namespace RpnCalculator;
+
+public interface ICalculator
+{
+     public IEnumerable<string> AcceptedOperators { get; }
+     public IEnumerable<string> OperationsHelpText { get; }
+     double Calculate(List<Token> tokens);
+}
 
 public class Calculator : ICalculator
      {

@@ -1,41 +1,5 @@
 using RpnCalculator;
 
-public interface IParser
-{
-     List<string> Tokenize(string input);
-     List<Token> Lex(List<string> input);
-}
-
-public interface ICalculator
-{
-     public IEnumerable<string> AcceptedOperators { get; }
-     public IEnumerable<string> OperationsHelpText { get; }
-     double Calculate(List<Token> tokens);
-}
-
-public interface IOperation {
-     string Name { get; }    
-     string Operator { get; }    
-     string Description { get; }    
-}
-public interface IBinaryOperation : IOperation {
-    double Calculate(double lhs, double rhs);
-}
-public interface IUnaryOperation : IOperation {
-    double Calculate(double num);
-}
-public interface INullaryOperation : IOperation {
-    public double Value { get; }
-}
-
-public interface IMenu
-{
-     List<string> OperationsHelp { get; }
-     void ShowMenu();
-     void ShowHelp();
-     void ShowOperations();
-}
-
 public class Controller
 {
      private ICalculator Calculator;

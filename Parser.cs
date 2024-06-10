@@ -1,7 +1,11 @@
 namespace RpnCalculator;
 
-// Validator
-// Parser
+public interface IParser
+{
+     List<string> Tokenize(string input);
+     List<Token> Lex(List<string> input);
+}
+
 public class Parser : IParser {
      private IList<string> AcceptedOperators;
 

@@ -1,5 +1,20 @@
 namespace RpnCalculator;
 
+public interface IOperation {
+     string Name { get; }    
+     string Operator { get; }    
+     string Description { get; }    
+}
+public interface IBinaryOperation : IOperation {
+    double Calculate(double lhs, double rhs);
+}
+public interface IUnaryOperation : IOperation {
+    double Calculate(double num);
+}
+public interface INullaryOperation : IOperation {
+    public double Value { get; }
+}
+
 public class Operation : IOperation {
      public string Name { get; }    
      public string Operator { get; }    
@@ -70,5 +85,3 @@ public class Division : Operation, IBinaryOperation {
           return lhf / rhs;
      }
 }
-
-// public class Addition : Operation {}
