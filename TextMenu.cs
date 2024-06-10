@@ -1,4 +1,4 @@
-using RpnCalculator;
+namespace RpnCalculator;
 
 public interface IMenu
 {
@@ -11,8 +11,8 @@ public interface IMenu
 public class TextMenu : IMenu {
      public List<string> OperationsHelp { get; }
 
-     public TextMenu(List<string> OperationsHelp) {
-          this.OperationsHelp = OperationsHelp;
+     public TextMenu(List<string> operationsHelp) {
+          OperationsHelp = operationsHelp;
      }
 
      /// <summary>

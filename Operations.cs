@@ -12,7 +12,7 @@ public interface IUnaryOperation : IOperation {
     double Calculate(double num);
 }
 public interface INullaryOperation : IOperation {
-    public double Value { get; }
+     double Value { get; }
 }
 
 public class Operation : IOperation {
@@ -20,10 +20,10 @@ public class Operation : IOperation {
      public string Operator { get; }    
      public string Description { get; }  
 
-     public Operation(string Name, string Operator, string Description) {
-          this.Name = Name;
-          this.Operator = Operator;
-          this.Description = Description;
+     public Operation(string name, string operatorSymbol, string description) {
+          Name = name;
+          Operator = operatorSymbol;
+          Description = description;
      }
 }
 

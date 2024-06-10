@@ -7,7 +7,7 @@ public interface IParser
 }
 
 public class Parser : IParser {
-     private IList<string> AcceptedOperators;
+     private readonly IList<string> _acceptedOperators;
 
      /// <summary>
      /// Breaks the input string into tokens
@@ -27,7 +27,7 @@ public class Parser : IParser {
           input.ForEach(token => {
                if(double.TryParse(token, out double result)) {
                     tokens.Add(new Token(TokenType.Operand, token));
-               } else if(AcceptedOperators.Contains(token)) {
+               } else if(_acceptedOperators.Contains(token)) {
                     tokens.Add(new Token(TokenType.Operator, token));
                } else {
                     throw new ArgumentException($"{token} is an invalid operator");
@@ -37,7 +37,7 @@ public class Parser : IParser {
           return tokens;
      }
 
-     public Parser(IList<string> AcceptedOperators) {
-          this.AcceptedOperators = AcceptedOperators;
+     public Parser(IList<string> acceptedOperators) {
+          _acceptedOperators = acceptedOperators;
      }
 }

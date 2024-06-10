@@ -1,21 +1,21 @@
-using RpnCalculator;
+namespace RpnCalculator;
 
 public class Controller
 {
-     private ICalculator Calculator;
-     private IParser Parser;
-     private IMenu Menu;
+     private ICalculator _calculator;
+     private IParser _parser;
+     private IMenu _menu;
 
-     public Controller(ICalculator Calculator, IParser Parser, IMenu Menu)
+     public Controller(ICalculator calculator, IParser parser, IMenu menu)
      {
-          this.Calculator = Calculator;
-          this.Parser = Parser;
-          this.Menu = Menu;
+          _calculator = calculator;
+          _parser = parser;
+          _menu = menu;
      }
 
      public void Run()
      {
-          Menu.ShowMenu();
+          _menu.ShowMenu();
 
           var input = string.Empty;
           do
@@ -26,20 +26,20 @@ public class Controller
                {
                     case "q": break;
                     case "h":
-                         Menu.ShowHelp();
+                         _menu.ShowHelp();
                          break;
                     case "o":
-                         Menu.ShowOperations();
+                         _menu.ShowOperations();
                          break;
                     default:
                          // an RPN expression is expected here 
                          try
                          {
-                              var split = Parser.Tokenize(input);
+                              var split = _parser.Tokenize(input);
                               if (split.Count != 0)
                               {
-                                   var tokens = Parser.Lex(split);
-                                   var result = Calculator.Calculate(tokens);
+                                   var tokens = _parser.Lex(split);
+                                   var result = _calculator.Calculate(tokens);
                                    Console.WriteLine($"\n {result}\n");
                               }
                          } // if the input is not valid, an exception is thrown by calculator or parser 

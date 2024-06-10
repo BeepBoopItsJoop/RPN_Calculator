@@ -10,24 +10,24 @@ public interface ICalculator
 public class Calculator : ICalculator
      {
      // "+" -> Addition
-     private Dictionary<string, IOperation> Operations;
+     private Dictionary<string, IOperation> _operations;
 
      public IEnumerable<string> AcceptedOperators { 
           get {
-               return Operations.Keys;
+               return _operations.Keys;
           }
      }
      public IEnumerable<string> OperationsHelpText { 
           get {
-               return Operations.Select(op => $"{op.Key}: {op.Value.Description}");
+               return _operations.Select(op => $"{op.Key}: {op.Value.Description}");
           }
      }
      public Calculator() {
-          Operations = [];
+          _operations = [];
      }
 
      public void Add(IOperation operation) {
-          Operations.Add(operation.Operator, operation);
+          _operations.Add(operation.Operator, operation);
      }
 
      private Stack<Token> stack = new();
@@ -37,7 +37,7 @@ public class Calculator : ICalculator
                if(token.IsOperand()) 
                     stack.Push(token);
                else {
-                    if(Operations.TryGetValue(token.GetValue(), out IOperation? operation)) {
+                    if(_operations.TryGetValue(token.GetValue(), out IOperation? operation)) {
                          double result;
 
                          if(operation is IBinaryOperation binaryOperation) {
