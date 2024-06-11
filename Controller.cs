@@ -2,17 +2,25 @@ namespace RpnCalculator;
 
 public class Controller
 {
+     // TODO: Replace calc and parser
      private ICalculator _calculator;
      private IParser _parser;
      private IMenu _menu;
 
+     // TODO: Add list of evaluators 
+     // TODO: currentEvaluator
+
      public Controller(ICalculator calculator, IParser parser, IMenu menu)
      {
+     // TODO: Replace calc and parser
           _calculator = calculator;
           _parser = parser;
+     // TODO: Add list of evaluators 
+     // TODO: Defualt Evaluator 
           _menu = menu;
      }
 
+     // TODO: Add switching calculators
      public void Run()
      {
           _menu.ShowMenu();
@@ -24,6 +32,7 @@ public class Controller
                input = Console.ReadLine() ?? "quit";
                switch (input)
                {
+                    // TODO: add switching evaluator
                     case "q": break;
                     case "h":
                          _menu.ShowHelp();
@@ -33,6 +42,7 @@ public class Controller
                          break;
                     default:
                          // an RPN expression is expected here 
+                         // TODO: Remove hard coded rpn here
                          try
                          {
                               var split = _parser.Tokenize(input);
@@ -43,6 +53,7 @@ public class Controller
                                    Console.WriteLine($"\n {result}\n");
                               }
                          } // if the input is not valid, an exception is thrown by calculator or parser 
+                         // TODO: refactor exceptions 
                          catch (FormatException e)
                          {
                               Console.WriteLine(e.Message);
