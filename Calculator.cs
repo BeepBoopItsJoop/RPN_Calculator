@@ -7,7 +7,7 @@ public interface ICalculator
      double Calculate(List<Token> tokens);
 }
 
-public class Calculator : ICalculator
+public class RPNCalculator : ICalculator
      {
      // "+" -> Addition
      private Dictionary<string, IOperation> _operations;
@@ -22,7 +22,7 @@ public class Calculator : ICalculator
                return _operations.Select(op => $"{op.Key}: {op.Value.Description}");
           }
      }
-     public Calculator() {
+     public RPNCalculator() {
           _operations = [];
      }
 

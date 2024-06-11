@@ -6,7 +6,7 @@ public interface IParser
      List<Token> Lex(List<string> input);
 }
 
-public class Parser : IParser {
+public class RPNParser : IParser {
      private readonly IList<string> _acceptedOperators;
 
      /// <summary>
@@ -37,7 +37,7 @@ public class Parser : IParser {
           return tokens;
      }
 
-     public Parser(IList<string> acceptedOperators) {
+     public RPNParser(IList<string> acceptedOperators) {
           _acceptedOperators = acceptedOperators;
      }
 }
