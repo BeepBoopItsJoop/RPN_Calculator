@@ -9,6 +9,25 @@ public interface IParser
 public class RPNParser : IParser {
      private readonly IList<string> _acceptedOperators;
 
+     public RPNParser() {
+          _acceptedOperators = new List<string>();
+     }
+     public RPNParser(IList<string> acceptedOperators) {
+          _acceptedOperators = acceptedOperators;
+     }
+
+     public void AddOperator(string operatorSymbol) {
+          if(!_acceptedOperators.Contains(operatorSymbol)) {
+               _acceptedOperators.Add(operatorSymbol);
+          }
+     }
+     public void AddOperator(ICollection<string> operatorSymbols) {
+          // TODO: fix
+          foreach(string operatorSymbol in operatorSymbols) {
+               AddOperator(operatorSymbol);
+          }
+     }
+
      /// <summary>
      /// Breaks the input string into tokens
      /// </summary>
@@ -35,9 +54,5 @@ public class RPNParser : IParser {
           });
 
           return tokens;
-     }
-
-     public RPNParser(IList<string> acceptedOperators) {
-          _acceptedOperators = acceptedOperators;
      }
 }

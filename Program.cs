@@ -12,10 +12,14 @@ calculator.Add(new Logarithm());
 calculator.Add(new Constant("Pi", "pi", "The constant pi", Math.PI));
 calculator.Add(new Constant("e", "e", "The constant e", Math.E));
 
-RPNParser parser = new(calculator.AcceptedOperators.ToList());
-TextMenu menu = new(calculator.OperationsHelpText.ToList());
+RPNParser parser = new();
+TextMenu menu = new();
 
-Controller controller = new(calculator, parser, menu);
+RPNEvaluator evaluator = new(calculator, parser);
+var evaluators = new List<IExpressionEvaluator>();
+evaluators.Add(evaluator);
+
+Controller controller = new(evaluators, menu);
 
 controller.Run();
 

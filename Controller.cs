@@ -1,26 +1,29 @@
+using System.Diagnostics.Tracing;
+using System.Security.Cryptography.X509Certificates;
+
 namespace RpnCalculator;
 
 public class Controller
 {
-     // TODO: Replace calc and parser
-     private ICalculator _calculator;
-     private IParser _parser;
+     private IList<IExpressionEvaluator> _expressionEvaluators;
+     private IExpressionEvaluator _currentEvaluator;
      private IMenu _menu;
 
-     // TODO: Add list of evaluators 
-     // TODO: currentEvaluator
-
-     public Controller(ICalculator calculator, IParser parser, IMenu menu)
+     public Controller(IList<IExpressionEvaluator> evaluators, IMenu menu)
      {
-     // TODO: Replace calc and parser
-          _calculator = calculator;
-          _parser = parser;
-     // TODO: Add list of evaluators 
-     // TODO: Defualt Evaluator 
+          _expressionEvaluators = evaluators;
+          _currentEvaluator = _expressionEvaluators.First();
           _menu = menu;
+          _menu.MenuHelp = _currentEvaluator.Help;
      }
 
-     // TODO: Add switching calculators
+     private void SwitchEvaluator(IExpressionEvaluator evaluator) {
+          if (!_expressionEvaluators.Contains(evaluator)) throw new ArgumentException("Evaluator doesn't exist");
+
+          _currentEvaluator = evaluator;
+          _menu.MenuHelp = evaluator.Help; 
+     }
+
      public void Run()
      {
           _menu.ShowMenu();
@@ -37,21 +40,11 @@ public class Controller
                     case "h":
                          _menu.ShowHelp();
                          break;
-                    case "o":
-                         _menu.ShowOperations();
-                         break;
                     default:
-                         // an RPN expression is expected here 
-                         // TODO: Remove hard coded rpn here
+                         // an expression is expected here 
                          try
                          {
-                              var split = _parser.Tokenize(input);
-                              if (split.Count != 0)
-                              {
-                                   var tokens = _parser.Lex(split);
-                                   var result = _calculator.Calculate(tokens);
-                                   Console.WriteLine($"\n {result}\n");
-                              }
+                              Console.WriteLine($"Result is {_currentEvaluator.Evaluate(input)}");
                          } // if the input is not valid, an exception is thrown by calculator or parser 
                          // TODO: refactor exceptions 
                          catch (FormatException e)

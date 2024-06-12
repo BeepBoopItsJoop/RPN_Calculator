@@ -2,8 +2,8 @@ namespace RpnCalculator;
 
 public interface ICalculator
 {
-     public IEnumerable<string> AcceptedOperators { get; }
-     public IEnumerable<string> OperationsHelpText { get; }
+     public IList<string> AcceptedOperators { get; }
+     public IList<string> OperationsHelpText { get; }
      double Calculate(List<Token> tokens);
 }
 
@@ -12,14 +12,14 @@ public class RPNCalculator : ICalculator
      // "+" -> Addition
      private Dictionary<string, IOperation> _operations;
 
-     public IEnumerable<string> AcceptedOperators { 
+     public IList<string> AcceptedOperators { 
           get {
-               return _operations.Keys;
+               return _operations.Keys.ToList();
           }
      }
-     public IEnumerable<string> OperationsHelpText { 
+     public IList<string> OperationsHelpText { 
           get {
-               return _operations.Select(op => $"{op.Key}: {op.Value.Description}");
+               return _operations.Select(op => $"{op.Key}: {op.Value.Description}").ToList();
           }
      }
      public RPNCalculator() {
