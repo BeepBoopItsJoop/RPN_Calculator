@@ -18,6 +18,7 @@ TextMenu menu = new();
 RPNEvaluator evaluator = new(calculator, parser);
 var evaluators = new List<IExpressionEvaluator>();
 evaluators.Add(evaluator);
+evaluators.Add(evaluator);
 
 Controller controller = new(evaluators, menu);
 

@@ -30,7 +30,7 @@ public class RPNEvaluator : IExpressionEvaluator {
                var help = new List<string> {
                     "Enter an expression in Reverse Polish notation (RPN)",
                     "e.g. 6 3 3 - + 2 * is RPN for \"(6 + (3-3)) * 2\"",
-                    "Enter 'o' to see available operations."
+                    "Available operations:"
                };
                help.AddRange(Calculator.OperationsHelpText);
                return help;

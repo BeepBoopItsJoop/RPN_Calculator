@@ -37,8 +37,25 @@ public class Controller
                {
                     // TODO: add switching evaluator
                     case "q": break;
+                    case "s":
+                         for(int i = 0; i < _expressionEvaluators.Count; i++) {
+                              Console.WriteLine($"{i+1} - {_expressionEvaluators[i].Description}");
+                         }
+                         Console.WriteLine("Enter the number of the evaluator to switch to: ");
+                         Console.Write("> ");
+                         string? evaluatorInput = Console.ReadLine();
+
+                         if (int.TryParse(evaluatorInput, out int choice) 
+                              && choice > 0 
+                              && choice <= _expressionEvaluators.Count)
+                         {
+                              // Switch to the chosen evaluator
+                              SwitchEvaluator(_expressionEvaluators[choice - 1]);
+                         }
+                         break;
                     case "h":
                          _menu.ShowHelp();
+                         _menu.ShowMenu();
                          break;
                     default:
                          // an expression is expected here 
