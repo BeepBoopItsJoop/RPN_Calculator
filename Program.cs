@@ -15,10 +15,13 @@ calculator.Add(new Constant("e", "e", "The constant e", Math.E));
 RPNParser parser = new();
 TextMenu menu = new();
 
-RPNEvaluator evaluator = new(calculator, parser);
-var evaluators = new List<IExpressionEvaluator>();
-evaluators.Add(evaluator);
-evaluators.Add(evaluator);
+RPNEvaluator rpnEvaluator = new(calculator, parser);
+MathJSEvaluator mathJSEvaluator = new();
+var evaluators = new List<IExpressionEvaluator>
+{
+     rpnEvaluator,
+     mathJSEvaluator
+};
 
 Controller controller = new(evaluators, menu);
 

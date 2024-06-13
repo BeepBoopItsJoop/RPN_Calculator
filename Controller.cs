@@ -35,7 +35,6 @@ public class Controller
                input = Console.ReadLine() ?? "quit";
                switch (input)
                {
-                    // TODO: add switching evaluator
                     case "q": break;
                     case "s":
                          for(int i = 0; i < _expressionEvaluators.Count; i++) {

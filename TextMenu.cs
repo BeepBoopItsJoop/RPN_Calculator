@@ -21,9 +21,7 @@ public class TextMenu : IMenu {
      /// <summary>
      /// Prints the main menu to the user
      /// </summary>
-     public void ShowMenu() {
-          // TODO: Update, add switching calculators
-          Console.WriteLine("Enter an expression to evaluate.");
+     public void ShowMenu() {;
           Console.WriteLine("Enter 'h' for help.");
           Console.WriteLine("Enter 's' to select a different calculator.");
           Console.WriteLine("Enter 'q' to quit.");
@@ -32,7 +30,6 @@ public class TextMenu : IMenu {
      /// Prints the extended help for the calculator that explains the syntax
      /// </summary>
      public void ShowHelp() {
-          // TODO: use help from evaluater or smth
           foreach(string line in MenuHelp) {
                Console.WriteLine(line);
           }
